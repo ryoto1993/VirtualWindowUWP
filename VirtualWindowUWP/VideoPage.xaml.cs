@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Storage;
 using Windows.System;
 using Windows.Storage.FileProperties;
+using Windows.Storage.Search;
+using System.Diagnostics;
 
 namespace VirtualWindowUWP
 {
@@ -30,6 +32,8 @@ namespace VirtualWindowUWP
         private static MediaElement videoObject;
         // Thumbnail object
         private static List<StorageItemThumbnail> thumbnailList;
+        // Storage File Querry for change detecting
+        private static StorageFileQueryResult queryResult;
 
         public VideoPage()
         {
@@ -50,14 +54,24 @@ namespace VirtualWindowUWP
             // Note: "first image" means the top file when files are sorted by Name.
             ReadVideo();
         }
+
         public static async void GetVideoList()
         {
-            // load image files upto 100.
-            videoLibrary = await videoLibrary.GetFolderAsync("VirtualWindow");
-            storedVideo = await videoLibrary.GetFilesAsync(Windows.Storage.Search.CommonFileQuery.OrderByName, 0, 100);
+            // Create file query for change detection
+            var options = new Windows.Storage.Search.QueryOptions
+            {
+                FolderDepth = Windows.Storage.Search.FolderDepth.Deep
+            };
+
+            // Add change detection event listener
+            queryResult = videoLibrary.CreateFileQueryWithOptions(options);
+            queryResult.ContentsChanged += QueryContentsChanged;
+
+            // Read videos
+            storedVideo = await queryResult.GetFilesAsync();
 
             // // get tumbnails
-            GetThumbs();
+            UpdateThumbs();
         }
 
         private static async void ReadVideo()
@@ -66,6 +80,35 @@ namespace VirtualWindowUWP
             var stream = await video.OpenAsync(Windows.Storage.FileAccessMode.Read);
 
             videoObject.SetSource(stream, video.ContentType);
+        }
+
+        public static async void UpdateThumbs()
+        {
+            thumbnailList = new List<StorageItemThumbnail>();
+            foreach (StorageFile file in storedVideo)
+            {
+                // Get thumbnail
+                const uint requestedSize = 350;
+                const ThumbnailMode thumbnailMode = ThumbnailMode.VideosView;
+                const ThumbnailOptions thumbnailOptions = ThumbnailOptions.UseCurrentScale;
+                var tmp = await file.GetThumbnailAsync(thumbnailMode, requestedSize, thumbnailOptions);
+                thumbnailList.Add(tmp);
+            }
+        }
+
+        private static async void QueryContentsChanged(Windows.Storage.Search.IStorageQueryResultBase sender, object args)
+        {
+            Debug.WriteLine("Change detected");
+
+            // Reset index
+            videoIndex = 0;
+
+            // Read videos
+            storedVideo = null;
+            storedVideo = await queryResult.GetFilesAsync();
+
+            // get tumbnails
+            UpdateThumbs();
         }
 
         // CoreWindow.KeyDown event handler only used in this page.
@@ -92,20 +135,6 @@ namespace VirtualWindowUWP
         {
             videoIndex = videoIndex == 0 ? storedVideo.Count - 1 : videoIndex - 1;
             ReadVideo();
-        }
-
-        public static async void GetThumbs()
-        {
-            thumbnailList = new List<StorageItemThumbnail>();
-            foreach (StorageFile file in storedVideo)
-            {
-                // Get thumbnail
-                const uint requestedSize = 350;
-                const ThumbnailMode thumbnailMode = ThumbnailMode.VideosView;
-                const ThumbnailOptions thumbnailOptions = ThumbnailOptions.UseCurrentScale;
-                var tmp = await file.GetThumbnailAsync(thumbnailMode, requestedSize, thumbnailOptions);
-                thumbnailList.Add(tmp);
-            }
         }
 
         public static List<StorageItemThumbnail> GetThumbnailList()

@@ -117,14 +117,10 @@ namespace VirtualWindowUWP
             socket.CreateSocketListener();
             socket.setRootFrame(rootFrame);
 
-            // Load Images
+            // Get file list of Video Page and Image page
             ImagePage.GetImageList();
-
-            // Load Videos
             VideoPage.GetVideoList();
 
-            // create original HTTP server
-            // httpServer = new HttpServer(8080);
         }
 
         /// <summary>

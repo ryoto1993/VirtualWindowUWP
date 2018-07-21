@@ -60,7 +60,7 @@ namespace VirtualWindowUWP
         public static async void GetImageList()
         {
             // load image files upto 100.
-            pictureLibrary = await pictureLibrary.GetFolderAsync("VirtualWindow");
+            pictureLibrary = await pictureLibrary.GetFolderAsync("virtualWindow");
             storedPicture = await pictureLibrary.GetFilesAsync(Windows.Storage.Search.CommonFileQuery.OrderByName, 0, 100);
 
             // // get tumbnails

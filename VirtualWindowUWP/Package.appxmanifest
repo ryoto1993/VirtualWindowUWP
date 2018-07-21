@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" IgnorableNamespaces="uap mp uap3">
-  <Identity Name="1b1c26bc-5ba4-4a1c-9654-a5bc3a824422" Publisher="CN=Ryoto" Version="2.18.10629.0" />
+  <Identity Name="1b1c26bc-5ba4-4a1c-9654-a5bc3a824422" Publisher="CN=Ryoto" Version="2.18.10720.0" />
   <mp:PhoneIdentity PhoneProductId="1b1c26bc-5ba4-4a1c-9654-a5bc3a824422" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>VirtualWindowUWP</DisplayName>

@@ -58,17 +58,13 @@ namespace VirtualWindowUWP
         public LivePage()
         {
             this.InitializeComponent();
+            SetVideo();
+        }
+
+        public void SetVideo()
+        {
             vlc_player.HardwareAcceleration = true;
-
             vlc_player.Source = "rtsp://192.168.0.10/ONVIF/MediaInput?profile=3_def_profile1";
-            // vlc_player.Source = "rtsp://192.168.0.10/MediaInput/h264";
-
-            /* DEBUG */
-            // vlc_player.Source = "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov";
-            // vlc_player.Options.Add("rtsp-host", "184.72.239.149");
-
-            
-            // vlc_player.Stretch = Stretch.UniformToFill;
             vlc_player.Play();
         }
 
