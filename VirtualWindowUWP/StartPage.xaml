@@ -11,11 +11,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="50*"/>
-            <RowDefinition Height="5*"/>
+            <RowDefinition Height="20*"/>
             <RowDefinition Height="30*"/>
             <RowDefinition Height="130*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="110*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="80*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="109*"/>
@@ -56,7 +56,7 @@
 
             <Button x:Name="liveButton" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#7F000000" Click="NavigateButtonClick">
                 <Viewbox Margin="25">
-                    <TextBlock Foreground="LightGray">ライブ映像</TextBlock>
+                    <TextBlock Foreground="White">ライブ映像</TextBlock>
                 </Viewbox>
             </Button>
             <Button x:Name="blankButton" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#7F000000" Click="NavigateButtonClick">
@@ -85,7 +85,7 @@
         </Viewbox>
 
         <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" x:Name="information_view"
-              Background="#B2000000" Visibility="Collapsed">
+              Background="{ThemeResource SystemControlAccentDark2AcrylicElementAccentDark2MediumHighBrush}" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="10*"/>
@@ -113,7 +113,7 @@
                        HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
                        Margin="0 2 0 2"/>
             </Viewbox>
-            
+
             <!--Port-->
             <Viewbox Grid.Row="2" Grid.Column="1">
                 <TextBlock x:Name="port_title"  Foreground="White"
@@ -145,5 +145,6 @@
         </Grid>
 
     </Grid>
-
 </Page>
+
+    
