@@ -22,15 +22,21 @@
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
 
-        <Image x:Name="image" Source="Images/newStartPage.png" Stretch="UniformToFill" Grid.ColumnSpan="2" Grid.RowSpan="7"/>
+        <!--<Image x:Name="image" Source="Images/newStartPage.png" Stretch="UniformToFill" Grid.ColumnSpan="2" Grid.RowSpan="7"/>-->
+        <Image x:Name="image" Source="Images/wood.jpg" Stretch="UniformToFill" Grid.ColumnSpan="2" Grid.RowSpan="7"/>
 
 
 
-        <Rectangle Grid.Row="1" Grid.Column="0" Fill="#7FFFFFFF"/>
+        <!--<Rectangle Grid.Row="1" Grid.Column="0" Fill="#7FFFFFFF"/>-->
+        <Rectangle Grid.Row="1" Grid.Column="0" Fill="{ThemeResource SystemControlAccentDark2AcrylicElementAccentDark2MediumHighBrush}"/>
         <Viewbox Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Foreground="#FF2E76B9" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+            <!--<TextBlock Foreground="#FF2E76B9" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
                        Margin="10 0 10 0">
                 同志社大学・奈 良県立医科大学<LineBreak/>擬似窓 システム
+            </TextBlock>-->
+            <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                       Margin="10 0 10 0">
+                Intelligent Systems Design Laboratory<LineBreak/>Virtual Window System
             </TextBlock>
         </Viewbox>
 

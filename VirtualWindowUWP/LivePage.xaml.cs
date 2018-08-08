@@ -64,7 +64,8 @@ namespace VirtualWindowUWP
         public void SetVideo()
         {
             vlc_player.HardwareAcceleration = true;
-            vlc_player.Source = "rtsp://192.168.0.10/ONVIF/MediaInput?profile=3_def_profile1";
+            // vlc_player.Source = "rtsp://192.168.0.10/ONVIF/MediaInput?profile=3_def_profile1";
+            vlc_player.Source = "rtsp://172.20.11.46:554/stream/profile1=r";
             vlc_player.Play();
         }
 
